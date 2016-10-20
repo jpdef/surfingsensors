@@ -1,7 +1,7 @@
 .PHONY: depend clean print
-CC        = g++
+CC        =  arm-linux-gnueabihf-g++
 CFLAGS    = -Wall -std=c++11 
-LIBS      = -lm -lbcm2835
+LIBS      = -lm
 SRCS      = $(wildcard src/*.cpp)
 HDRS      = $(patsubst src/%.cpp,src/%.h,$(SRCS))
 OBJS      = $(patsubst src/%.cpp,build/%.o,$(SRCS))
