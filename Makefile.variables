@@ -1,0 +1,13 @@
+#CC        =  arm-linux-gnueabihf-g++
+CC         =  ../compiler/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
+
+
+CFLAGS    = -Wall -std=c++11 
+LIBS      = -lm -lrt
+SRCS      = $(wildcard src/*.cpp)
+HDRS      = $(patsubst src/%.cpp,src/%.h,$(SRCS))
+BIN       = idm
+TOP       = ~/workspace/surfsensor/imu-data-monitor/
+SRCDIR    = src/
+BUILDDIR  = build/
+BINDIR    = bin/

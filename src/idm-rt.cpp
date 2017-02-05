@@ -58,15 +58,10 @@ int main(int argc, char* argv[])
         MPU6050 accelgyro ;
         int16_t ax, ay, az;
         int16_t gx, gy, gz;
-        float axf, ayf, azf;
-        float gxf, gyf, gzf;
-        int16_t accl_scale, gyro_scale;
-	accelgyro.resetGyroscopePath();
+        accelgyro.resetGyroscopePath();
         accelgyro.resetAccelerometerPath();
         accelgyro.resetTemperaturePath();
         accelgyro.resetI2CMaster();
-        accl_scale = accelgyro.getFullScaleAccelRange();
-        gyro_scale = accelgyro.getFullScaleGyroRange();
       
         clock_gettime(CLOCK_MONOTONIC ,&t);
         /* start after one second */
@@ -83,14 +78,7 @@ int main(int argc, char* argv[])
                 clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &t, NULL);
                 /* do the stuff */
                 accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-		axf= (( float ) ax  ) / ((float) accl_scale);
-		ayf= (( float ) ax  ) / ((float) accl_scale);
-		azf= (( float ) ax  ) / ((float) accl_scale);
-		gxf= (( float ) ax  ) / ((float) gyro_scale);
-		gyf= (( float ) ax  ) / ((float) gyro_scale);
-		gzf= (( float ) ax  ) / ((float) gyro_scale);
-                fprintf(stdout," %d , % d  \n", ax, accl_scale);
-                //fprintf(stdout,"  %.4f \t %.4f \t %.4f \t %.4f \t %.4f \t %.4f\n", axf, ayf, azf, gxf, gyf, gzf);
+                fprintf(stdout,"  %d \t %d \t %d \t %d \t %d \t %d\n", ax, ay, az, gx, gy, gz);
                 fflush(stdout);
                 /* calculate next shot */
                 t.tv_nsec += interval;
